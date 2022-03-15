@@ -1,3 +1,7 @@
+### OSX ###
+*.DS_Store
+.git
+
 # Local .terraform directories
 **/.terraform/*
 
