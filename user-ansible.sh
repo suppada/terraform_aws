@@ -51,12 +51,14 @@ else
         exit 2
 fi
 
-# Run me with superuser privileges
-echo 'ansible        ALL=(ALL)       ALL' >> /etc/sudoers
+ssh-keygen -q -t rsa -N '' -f ~/.ssh/id_rsa <<<y >/dev/null 2>&1
 
-echo /etc/ssh/sshd_config
+# Run me with superuser privileges
+echo '$username       ALL=(ALL)       ALL' >> /etc/sudoers
+
+sed -i "/^[^#]*PasswordAuthentication[[:space:]]no/c\PasswordAuthentication yes" /etc/ssh/sshd_config
+#echo /etc/ssh/sshd_config
 #PasswordAuthentication yes
 #PasswordAuthentication no
-
 service sshd restart
 exit 3
