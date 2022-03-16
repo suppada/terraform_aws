@@ -1,5 +1,4 @@
 // Provider specific configs
-
 module "my_ec2" {
   source          = "git::https://github.com/suppada/terraform.git//modules/ec2"
   ec2_count       = "1"
