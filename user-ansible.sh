@@ -50,3 +50,20 @@ else
         echo "Only root may add a user to the system"
         exit 2
 fi
+
+
+read -p "username: " $username
+useradd -m -s /bin/bash $username
+passwd $username
+
+# Run me with superuser privileges
+echo 'ansadmin        ALL=(ALL)       ALL' >> /etc/sudoers
+
+echo /etc/ssh/sshd_config
+#PasswordAuthentication yes
+#PasswordAuthentication no
+
+service sshd restart
+exit 1
+
+ssh-keygen
