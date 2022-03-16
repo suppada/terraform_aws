@@ -30,6 +30,10 @@ fmt:
 		-write=true \
 		-recursive
 
+validate:
+	@echo "Validating existing code"
+	@terraform validate
+
 apply:
 	@echo "Applying changes to Infrastracture"
 	@terraform apply \
