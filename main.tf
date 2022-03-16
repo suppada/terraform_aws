@@ -8,6 +8,6 @@ module "my_ec2" {
   user_data       = "user-ansible.sh"
   aws_region      = "us-east-1"
   subnet_id       = "subnet-06909708"
-  environment_tag = "Test"
-  instance_name   = "node1"
+  environment_tag = "dev"
+  instance_name   = "Ansible"
 }
