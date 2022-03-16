@@ -1,6 +1,6 @@
 ### OSX ###
 
-*.DS_Store
+.DS_Store
 .git
 
 # Local .terraform directories
@@ -10,7 +10,7 @@
 *.tfstate
 *.tfstate.*
 *.terraform.lock.hcl
-*.tfplan
+terraform.tfplan
 
 # Crash log files
 crash.log
