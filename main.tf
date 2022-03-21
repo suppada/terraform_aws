@@ -6,7 +6,7 @@ module "my_ec2" {
   instance_type       = "t2.micro"
   key_name            = "suresh"
   role_name           = "java-test"
-  user_data           = file("user-ansible.sh")
+  user_data           = file("install.sh")
   security_group_name = "java-test"
   instance_profile    = "java-test"
   role_policy         = "java-test"
