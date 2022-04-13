@@ -35,6 +35,10 @@ yum install -y docker-ce docker-ce-cli containerd.io --nobest
 systemctl start docker
 systemctl enable docker
 
+#cfn-guard installation
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/aws-cloudformation/cloudformation-guard/main/install-guard.sh | sh
+cp ~/.guard/bin/cfn-guard /usr/bin/
+
 #Terraform installation
 curl -O https://releases.hashicorp.com/terraform/1.1.7/terraform_1.1.7_linux_amd64.zip
 unzip terraform_1.1.7_linux_amd64.zip -d /usr/local/bin/
