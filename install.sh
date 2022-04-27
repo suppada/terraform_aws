@@ -4,6 +4,7 @@ yum update -y
 #yum install java -y
 yum install java-11-openjdk -y
 yum install git wget zip unzip nano -y
+yum install -y bzip2
 #yum install docker -y
 yum install maven jq ansible make -y
 mkdir /var/jenkins/
@@ -53,6 +54,11 @@ wget https://chromedriver.storage.googleapis.com/101.0.4951.15/chromedriver_linu
 unzip chromedriver_linux64.zip
 mv chromedriver /usr/bin
 #chromedriver -version
+
+#firefox install 47.0 version
+wget https://ftp.mozilla.org/pub/firefox/releases/47.0.1/linux-x86_64/en-US/firefox-47.0.1.tar.bz2
+tar xvf firefox
+ln -s /opt/firefox/bin/firefox /usr/bin/firefox
 
 #geckodriver install
 wget https://github.com/mozilla/geckodriver/releases/download/v0.31.0/geckodriver-v0.31.0-linux64.tar.gz
