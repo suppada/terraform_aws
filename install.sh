@@ -27,7 +27,7 @@ systemctl enable amazon-ssm-agent
 systemctl start amazon-ssm-agent
 systemctl status amazon-ssm-agent
 
-#Dokcer install
+#Docker install
 yum install -y yum-utils device-mapper-persistent-data lvm2
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 dnf install -y https://download.docker.com/linux/centos/8/x86_64/stable/Packages/containerd.io-1.5.10-3.1.el8.x86_64.rpm
@@ -42,6 +42,23 @@ cp ~/.guard/bin/cfn-guard /usr/bin/
 #Terraform installation
 curl -O https://releases.hashicorp.com/terraform/1.1.7/terraform_1.1.7_linux_amd64.zip
 unzip terraform_1.1.7_linux_amd64.zip -d /usr/local/bin/
+
+#google chrome installation
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+yum install -y ./google-chrome-stable_current_*.rpm
+#google-chrome --version
+
+#chrome driver installation
+wget https://chromedriver.storage.googleapis.com/101.0.4951.15/chromedriver_linux64.zip
+unzip chromedriver_linux64.zip
+mv chromedriver /usr/bin
+#chromedriver -version
+
+#geckodriver install
+wget https://github.com/mozilla/geckodriver/releases/download/v0.31.0/geckodriver-v0.31.0-linux64.tar.gz
+tar -xvf geckodriver-v0.31.0-linux64.tar.gz
+mv geckodriver /usr/bin
+#geckodriver --version
 
 #Jenkins installation
 wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
