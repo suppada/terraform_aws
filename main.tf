@@ -5,11 +5,11 @@ module "master" {
   ami_id              = "ami-0b0af3577fe5e3532"
   instance_type       = "t2.micro"
   key_name            = "suresh"
-  user_data           = file("bash.sh")
+  user_data           = file("install.sh")
   aws_region          = "us-east-1"
   subnet_id           = "subnet-06909708"
   environment_tag     = "Dev"
-  instance_name       = "master"
+  instance_name       = "test"
   project             = "Devops"
   owner               = "suresh"
   role_name           = "dev"
