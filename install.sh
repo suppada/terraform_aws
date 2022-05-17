@@ -57,7 +57,7 @@ mv chromedriver /usr/bin
 
 #firefox install 47.0 version
 wget https://ftp.mozilla.org/pub/firefox/releases/47.0.1/linux-x86_64/en-US/firefox-47.0.1.tar.bz2
-tar xvf firefox
+tar xvf firefox-47.0.1.tar.bz2
 ln -s /opt/firefox/firefox /usr/bin/firefox
 
 #geckodriver install

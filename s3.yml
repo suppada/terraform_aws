@@ -1,0 +1,83 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Secondary CF Stack with S3 Bucket and Custom Resource"
+Parameters:
+  bucketname:
+    Description: S3 Bucket Name to store data
+    Type: String
+  Env:
+    Description: "Operating environment"
+    Type: String
+    AllowedValues: ["DEV", "QA", "TEST", "PROD", "SAND", "TRN"]
+    Default: "DEV"
+  Notify:
+    Description: "Notification for backup vault creation failure & maintenance"
+    Type: String
+    Default: "sureshdevops986@gmail.com"
+Resources:
+  Kmskey:
+    Type: AWS::KMS::Key
+    Properties:
+      KeyPolicy:
+        Version: 2012-10-17
+        Id: key-default-1
+        Statement:
+          - Sid: Allow administration of the key
+            Effect: Allow
+            Principal:
+              AWS: !Join 
+                - ''
+                - - 'arn:aws:iam::'
+                  - !Ref 'AWS::AccountId'
+                  - ':root'
+            Action:
+              - 'kms:*'
+            Resource: 
+              - '*'
+  s3Bucket:
+    Type: AWS::S3::Bucket
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Properties:
+      AccessControl: Private
+      BucketName: !Ref bucketname
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls : True
+        BlockPublicPolicy : True
+        IgnorePublicAcls : True
+        RestrictPublicBuckets : True
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: 'aws:kms'
+              KMSMasterKeyID: !Ref Kmskey
+      Tags:
+        - Key: "Env"
+          Value: !Ref Env
+        - Key: "Notify"
+          Value: !Ref Notify
+  rBucketPolicy:
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      Bucket: !Ref s3Bucket
+      PolicyDocument:
+        Statement:
+          - Action:
+              - 's3:List*'
+              - 's3:Get*'
+              - 's3:Put*'
+            Effect: Allow
+            Resource:
+              - !Sub "arn:aws:s3:::${bucketname}"
+              - !Sub "arn:aws:s3:::${bucketname}/*"
+            Principal:
+              Service:
+                - codebuild.amazonaws.com
+                - codedeploy.amazonaws.com
+          - Action: "*"
+            Effect: Deny
+            Resource:
+              - !Sub "arn:aws:s3:::${bucketname}"
+            Principal: "*"
+            Condition:
+              Bool:
+                aws:SecureTransport: "false"
