@@ -2,7 +2,7 @@
 
 
 TEMPLATE="file:///${WORKSPACE}/s3.yml"
-# PARAMETERS=${DIR}/parameters.json
+PARAMETERS=${WORKSPACE}/parameters.json
 STACK_NAME=s3bucket
 
 #read -p "stack:" INPUT
