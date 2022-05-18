@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 
-TEMPLATE="${WORKSPACE}/s3.yml"
-PARAMETERS="${WORKSPACE}/parameters.json"
+TEMPLATE="file:///${WORKSPACE}/s3.yml"
+PARAMETERS="file:///${WORKSPACE}/parameters.json"
 STACK_NAME="s3bucket"
 
 #read -p "stack:" INPUT
