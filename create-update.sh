@@ -2,12 +2,14 @@
 
 
 TEMPLATE="file:///${WORKSPACE}/s3.yml"
-PARAMETERS="${WORKSPACE}/parameters.json"
+PARAMETERS="file:///${WORKSPACE}/parameters.json"
 STACK_NAME="s3bucket"
 
 #read -p "stack:" INPUT
 echo "User input: " ${INPUT}
 echo "Template: " ${TEMPLATE}
+echo "Stackname: " ${STACK_NAME}
+echo "Parameters: " ${PARAMETERS}
 
 if [ "${INPUT}" = create ] || [ "${INPUT}" = update ]
 then
