@@ -12,6 +12,9 @@ chmod 777 -R /var/jenkins/
 
 #sudo update-alternatives --config java
 
+#Jenkins
+#System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src *; style-src * 'unsafe-inline';")
+
 #gradle config
 wget https://services.gradle.org/distributions/gradle-5.1.1-bin.zip -P /tmp
 unzip -d /opt/gradle /tmp/gradle-5.1.1-bin.zip
