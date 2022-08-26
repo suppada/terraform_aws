@@ -9,10 +9,10 @@ module "my_ec2" {
   user_data           = file("install.sh")
   security_group_name = "java-test"
   instance_profile    = "java-test"
-  role_policy         = "java-test"
-  aws_region          = "us-east-1"
+  role_policy         = "java-test1"
+  aws_region          = "us-east-2"
   subnet_id           = "subnet-06909708"
-  environment_tag     = "dev"
+  environment_tag     = "qa"
   instance_name       = "Ansible"
   owner               = "suresh"
   project             = "Automation"
